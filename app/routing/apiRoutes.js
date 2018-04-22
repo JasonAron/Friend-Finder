@@ -12,7 +12,7 @@ module.exports = function (app, newFriend) {
         var newFriend = req.body;
         var newFriendScores = newFriend.scores;
         var scoresArray = [];
-        var friendsMatch = ;
+        var friendsMatch;
         var differencesArray = [];
         var bestMatch = 0;
 
@@ -23,10 +23,12 @@ module.exports = function (app, newFriend) {
         };
     });
 
+
     for (var i = 0; i < newFriendScores.length; i++) {
         scoresArray.push(parseInt(newFriendScores))
     };
         newUserFriend.scores = scoresArray;
+
 
     for (var i = 0; i < friends.length; i++) {
         var differences = 0;
@@ -36,11 +38,13 @@ module.exports = function (app, newFriend) {
         differencesArray.push(differences);
     };
 
+
     for (var i = 1; i < differencesArray.length; i++) {
         if(differencesArray[i] <= differencesArray[bestMatch]) {
             bestMatch = i;
         };
     };
+
 
     var bestFriend = friends[bestMatch];
     res.json(bestFriend);
